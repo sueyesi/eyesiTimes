@@ -15,15 +15,10 @@ const getNews = async() =>{
         const response = await fetch(url); // await  fetch함수가 완료될 때까지 기다려준다    
         console.log("rrr", response);    
         const data = await response.json();// json파일형식
-        let searchValue = searchInput.value;
         if(response.status===200){
             if(data.articles.length === 0){
                 throw new Error("No result for this search")
-            }   
-            if(searchValue == ''){
-                throw new Error("키워드가 입력되지 않았습니다.")              
-            }
-           
+            } 
             newsList = data.articles;
             render();
         }else{
@@ -39,34 +34,38 @@ const getNews = async() =>{
 async function getLatestNews() {
     //url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`); 
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`);
-    getNews();
+    await getNews();
 }
-
+//category
 const getNewsCategory = async(event) => {
     //console.log("category");   
     const category = event.target.textContent.toLowerCase();    
     //url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`); 
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`); 
     const response = await fetch(url); // await  fetch함수가 완료될 때까지 기다려준다
-    getNews();
+    await getNews();
 }
-//
+//keyword
 const getNewsByKeyword=async()=>{    
     const keyword = document.getElementById("searchInput").value;
     //console.log("keyword", keyword)
     //url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`); 
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?q=${keyword}`); 
     let searchValue = searchInput.value;
-    getNews();
-    searchInput.value = '';
-    
+    if(searchValue == ''){
+        alert("키워드가 입력되지 않았습니다.");
+        return;
+    }
+    await getNews();
+    searchInput.value = '';    
 }
-searchInput.addEventListener('keypress', function(event) {    
+//enter키로 입력
+searchInput.addEventListener('keypress', function(event) {        
     if (event.key === 'Enter') {
         searchButton.click();
-    }
-    
+    }    
 });
+//뉴스그리기
 const render =()=>{
     const newsHTML = newsList.map(news=>`
         <div class="row news">
@@ -96,20 +95,15 @@ const errorRender = (errorMessage) =>{
     const errorHtml =`<div class="alert alert-danger" role="alert">
     ${errorMessage}
     </div>`;
-
     document.getElementById("newsBoard").innerHTML = errorHtml
 };
-
-
+//Menu
 let openNav = () =>{
     document.getElementById("mySidenav").style.width = "50%";  
 }
-
 let closeNav = () =>{
     document.getElementById("mySidenav").style.width = "0";
-}
-
- 
+} 
 
 getLatestNews();
 // 삼항조건연산자 A ? B : C (A는 참이면 B 거짓이면 C를 실행)
