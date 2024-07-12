@@ -104,7 +104,10 @@ let openNav = () =>{
 let closeNav = () =>{
     document.getElementById("mySidenav").style.width = "0";
 } 
-
+let searchOpen = () =>{    
+    document.getElementById("searchArea").style.width = "80%";
+    document.getElementById("searchArea").style.opacity = "1";
+}
 getLatestNews();
 // 삼항조건연산자 A ? B : C (A는 참이면 B 거짓이면 C를 실행)
 ////news.description.length > 0 조건을 사용하여 description이 비어있지 않은 경우에는 말줄임 표시, 비어있는 경우에는 내용없음 표시

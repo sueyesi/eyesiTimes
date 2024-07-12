@@ -49,6 +49,14 @@ body{
     text-align: center;
     cursor: pointer;
     margin: 0 5px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #eee;
+}
+.tnb span.home a{
+    color: #05c0c0;
+    font-size: 1.6rem;
+
 }
 .searchArea{ 
      display: flex;
@@ -73,11 +81,15 @@ input:focus {outline:none}
     color: #fff; 
     height: 40px;
 }
-.searchBox{
-     width: 80%;
+#searchArea{
+    width: 10%;
+    opacity: 0;
+    transition: 0.5s;
+}
+.searchBox{     
      margin: 0 auto;
      display: flex;
-     justify-content: center;
+     justify-content: center;     
 }
 .searchBox input{
     border: 2px solid #05c0c0;      
