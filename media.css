@@ -1,0 +1,66 @@
+@media (max-width: 990px) {
+    .imgArea{ text-align: center; margin-bottom: 20px;}
+        
+}
+@media (max-width: 820px) {
+    .container{
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        padding: 10px 30px;    
+    }
+    .container h1{        
+        font-size: 2.5rem;        
+    }    
+    .menus{
+        display: none;
+    }
+    .newsWrap{
+        border-top: 1px solid #ebebeb;
+        margin-top: 20px;
+    }
+    .mySidenav{
+        display: block;
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        overflow-x: hidden;
+    }
+    .mySidenav .menus{
+        display: block;
+        border: none;
+        margin-top: 0;
+    }
+    .mySidenav .menus button{
+        display:block;
+        border: none;
+        background: none;
+        margin: 10px 0px;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #fff;
+        margin-left: 30px;
+        transition: 0.2s;
+    }
+    .mySidenav .menus button:hover{
+        color: #8fb9ab;
+        margin-left: 50px
+    }
+    .mobileMenu{
+        display: block;
+    }    
+    .closebtn{
+        display: block;
+        text-align: right;
+        padding:10px 50px;
+        color: #fff;
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 420px) {   
+    .container h1{        
+        font-size: 1.8rem;        
+    }
+}

@@ -1,0 +1,173 @@
+@font-face {
+    font-family: 'OKCHAN';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKCHAN.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html{
+    font-family: 'GmarketSansMedium';
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    
+}
+body{
+    background:#8fb9ab;
+}
+.container{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 30px 80px;
+    background: #fff;
+    position: relative;
+}
+.container h1{
+    font-family: 'OKCHAN';
+    text-align: center;
+    font-size: 4.5rem;
+    padding: 20px 0;
+    text-shadow: 1px 1px 4px rgb(63, 62, 63);
+    display: flex;
+    justify-content: center;
+}
+.container h1 svg{
+    width: 450px;
+}
+.tnb{
+    width: 100%;
+    display: flex;
+    font-size: 1.8rem;
+    justify-content: flex-end;
+}
+.tnb span{    
+    text-align: center;
+    cursor: pointer;
+    margin: 0 5px;
+}
+.searchArea{ 
+     display: flex;
+     width: 0;  
+     opacity: 0; 
+}
+.searchArea input{
+    border: 2px solid #05c0c0;      
+    font-size:1.2rem;
+    padding: 0 20px;
+    border-radius: 20px 0 0 20px; 
+    transition: 0.2s;
+    height: 40px;
+} 
+input:focus {outline:none}
+.searchArea button{
+    border: 0;
+    background: #05c0c0;   
+    font-size:1.1rem;
+    padding: 0 20px;
+    border-radius: 0 20px 20px 0;   
+    color: #fff; 
+    height: 40px;
+}
+.searchBox{
+     width: 80%;
+     margin: 0 auto;
+     display: flex;
+     justify-content: center;
+}
+.searchBox input{
+    border: 2px solid #05c0c0;      
+    font-size:1.2rem;
+    padding: 0 20px;
+    border-radius: 20px 0 0 0; 
+    transition: 0.2s;
+    height: 50px;
+    width: calc(100% - 70px);
+    text-align: center;
+} 
+.searchBox input[type=text]:focus {
+    background: #05c0c03d;
+  }
+.searchBox button{
+    border: 0;
+    background: #05c0c0;   
+    font-size:1.1rem;
+    padding: 0 20px;
+    border-radius: 0 0 20px 0;   
+    color: #fff; 
+    height: 50px;
+    width: 70px;
+}
+.closebtn{
+    display: none;
+}
+.mySidenav{
+    display: none;    
+    transition: 0.5s;
+}
+.menus{         
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 4px double #999;        
+}
+.menus button{    
+    border: none;
+    background: none;
+    margin: 5px 15px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #000;
+}
+.menus button:hover{
+    color: #8fb9ab;
+}
+
+.newsWrap .news:hover{
+    background:rgba(244, 208, 150, 0.25)   
+}
+.news{
+    padding: 20px 0;
+    border-bottom: 1px solid #999;
+}
+.news dt{
+    padding: 10px 0;
+    font-size: 1.1rem;    
+}
+.news dd{
+    color: #333;   
+}
+.news dd.source{ 
+    color: #888;   
+    text-align: right;    
+}
+.news dd.source span{    
+    margin: 0 5px;
+}
+.newsImgSize{
+    max-width: 100%;
+    max-height: 200px;
+}
+.noImage{
+    background: #eee;
+}
+.noImage::after{
+    content: 'IMAGE NOT AVAILABLE';
+    text-align: center;
+    border: 1px solid #999;
+}
+.mobileMenu{
+    display: none;
+}
+.alert{
+    text-align: center;
+    font-family: 'GmarketSansMedium';
+    padding: 30px 0;
+    margin-top: 1rem;
+}
