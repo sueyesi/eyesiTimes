@@ -15,10 +15,15 @@ const getNews = async() =>{
         const response = await fetch(url); // await  fetch함수가 완료될 때까지 기다려준다    
         console.log("rrr", response);    
         const data = await response.json();// json파일형식
+        let searchValue = searchInput.value;
         if(response.status===200){
             if(data.articles.length === 0){
                 throw new Error("No result for this search")
-            }      
+            }   
+            if(searchValue == ''){
+                throw new Error("키워드가 입력되지 않았습니다.")              
+            }
+           
             newsList = data.articles;
             render();
         }else{
