@@ -8,8 +8,7 @@ menus.forEach(menu=>menu.addEventListener("click",(event)=>getNewsCategory(event
 let url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`);
 //let url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`); 
 
-
-
+//리펙토링
 const getNews = async() =>{
     try{
         const response = await fetch(url); // await  fetch함수가 완료될 때까지 기다려준다    
@@ -41,8 +40,7 @@ const getNewsCategory = async(event) => {
     //console.log("category");   
     const category = event.target.textContent.toLowerCase();    
     //url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`); 
-    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`); 
-    const response = await fetch(url); // await  fetch함수가 완료될 때까지 기다려준다
+    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`);     
     await getNews();
 }
 //keyword
