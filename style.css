@@ -187,3 +187,11 @@ input:focus {outline:none}
     justify-content: center;
     margin-top: 1rem;
 }
+.pagination .page-link{
+    color: #000;
+}
+.pagination .active>.page-link{
+    background-color: #05c0c0;
+    border: 1px solid #05c0c0;
+    color: #fff;
+}
