@@ -183,3 +183,7 @@ input:focus {outline:none}
     padding: 30px 0;
     margin-top: 1rem;
 }
+.pagination{
+    justify-content: center;
+    margin-top: 1rem;
+}
