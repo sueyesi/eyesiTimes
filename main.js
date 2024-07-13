@@ -24,13 +24,12 @@ const getNews = async() =>{
         const data = await response.json();// json파일형식
         if(response.status===200){
             if(data.articles.length === 0){
-                throw new Error("No result for this search")
+                throw new Error("No result for this search");                 
             } 
             newsList = data.articles;
             totalResults = data.totalResults;
             render(); 
-            paginationRender();
-           
+            paginationRender();           
         }else{
             throw new Error(data.message);
         }       
@@ -44,15 +43,16 @@ const getNews = async() =>{
 async function getLatestNews() {
     //url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`); 
     url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`);
-    await getNews();
+    await getNews();    
 }
 //category
 const getNewsCategory = async(event) => {
     //console.log("category");   
     const category = event.target.textContent.toLowerCase();    
     //url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`); 
-    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`);     
+    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`);      
     await getNews();
+    moveToPage(1);  
 }
 //keyword
 const getNewsByKeyword=async()=>{    
@@ -135,21 +135,24 @@ const paginationRender= ()=>{
         lastPage = totalPages;
     }
     //firstPage
-    const firstPage = lastPage - (groupSize - 1) <= 0? 1 : lastPage - (groupSize - 1);
-    let paginationHTML = `<li class="page-item" onclick="moveToPage(${page-1})">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>`;
-    
+    let firstPage = lastPage - (groupSize - 1) <= 0? 1 : lastPage - (groupSize - 1); 
+    let paginationHTML=``;
+
+    if (page > 1){ 
+        paginationHTML = `
+        <li class="page-item" onclick="moveToPage(1)"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa-solid fa-angles-left"></i></span></a></li>
+        <li class="page-item" onclick="moveToPage(${page-1})"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span></a></li>`
+    }  
+   
     for(let i=firstPage;i<=lastPage;i++){
         paginationHTML += `<li class="page-item ${i===page?'active':''}" onclick="moveToPage(${i})"><a class="page-link" >${i}</a></li>`
     }
-    paginationHTML+=`<li class="page-item" onclick="moveToPage(${page+1})">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>`
+    if(page < totalPages){
+        paginationHTML+=`
+        <li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true"<i class="fa-solid fa-angle-right"></i></span></a></li>
+        <li class="page-item" onclick="moveToPage(${totalPages})"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span></a></li>
+        `
+    }    
     document.querySelector(".pagination").innerHTML = paginationHTML;  
 };
 //page클릭시 URL호출
@@ -157,9 +160,32 @@ const moveToPage = async (pageNum) => {
     //console.log("m",pageNum);
     page = pageNum;
     await getNews();
+    scrollToTop();
 }
-
+function scrollToTop() {
+    document.body.scrollTop = 0; // 페이지의 스크롤을 맨 위로 이동
+    document.documentElement.scrollTop = 0;
+}
+//스크롤 위치
+// topBtn과 downBtn 요소를 가져옵니다.
+const topBtn = document.getElementById("topBtn");
+const downBtn = document.getElementById("downBtn");
+scrollFunction = ()=>{
+    if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+        topBtn.style.display = "block";
+        downBtn.style.display = "block";
+    } else {
+        topBtn.style.display = "none";
+        downBtn.style.display = "none";
+    }
+}
+// 스크롤 이벤트가 발생할 때 scrollFunction 함수를 호출
+window.onscroll = () => {
+    scrollFunction();
+};
 getLatestNews();
+scrollToTop();
+
 // 삼항조건연산자 A ? B : C (A는 참이면 B 거짓이면 C를 실행)
 ////news.description.length > 0 조건을 사용하여 description이 비어있지 않은 경우에는 말줄임 표시, 비어있는 경우에는 내용없음 표시
 //URL 관련문서 https://developer.mozilla.org/en-US/docs/Web/API/URL
